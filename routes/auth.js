@@ -193,8 +193,4 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/intranet", isLoggedOut, (req, res) => {
-  res.render("auth/intranet");
-});
-
 module.exports = router;

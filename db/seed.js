@@ -48,7 +48,16 @@ mongoose
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
-          ...companyAdmin,
+          //I create the Admin user
+          companyName: companyAdmin.companyName,
+          userName: companyAdmin.userName,
+          email: companyAdmin.email,
+          password: companyAdmin.password,
+          phoneNumber: companyAdmin.phoneNumber,
+          isAdmin: companyAdmin.isAdmin,
+          isCompany: companyAdmin.isCompany,
+          //Instead of writing this long object, I can use the spread operator:
+          //   ...companyAdmin,
           password: hashedPassword,
         }).then(() => {
           return bcrypt
