@@ -1,0 +1,80 @@
+<section>
+   <form action="/auth/signup" method="POST">
+   <fieldset>
+      <legend>Create your account</legend>
+   <label> Company Name *
+      <input 
+      type="text" 
+      name="companyName"
+      value="{{companyName}}"
+      >
+   </label>
+
+   <label> Name *
+      <input 
+      type="text" 
+      name="userName"
+      value="{{userName}}"
+      >
+   </label>
+
+    <label> Location
+      <input 
+      type="text" 
+      name="location" 
+      placeholder="Your city"
+      value="{{location}}"
+      >
+   </label>
+
+    <label> Email *
+      <input 
+      type="text" 
+      name="email"
+      value="{{email}}"
+      >
+   </label>
+
+    <label> Phone Number *
+      <input 
+      type="tel"
+      name="phoneNumber"
+      value="{{phoneNumber}}"
+      >
+   </label>
+
+   <label> Password *
+      <input 
+      type="password" 
+      name="password">
+      <small> the password has 8 characters minimum, letters and numbers  </small>
+   </label>
+
+   <label> Your Job
+      <input 
+      type="text" 
+      name="jobTitle"
+      value="{{jobTitle}}"
+      >
+   </label>
+
+   <label> Your business activities
+      <input 
+      type="text" 
+      name="business"
+      value="{{business}}"
+      >
+   </label>
+   <br>
+   <button type="submit">Create my account</button>
+
+   </fieldset>
+</form>
+
+{{#if errorMessage}}
+  <p style="color:red">{{errorMessage}}</p>
+{{/if}}
+</section>
+
+
+   

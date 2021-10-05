@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      {{!-- <title>{{title}}</title> --}}
+      <title>Flavoral App</title>
+      <link rel="stylesheet" href="/stylesheets/style.css" />
+   </head>
+<div>
+<img id="logo" src="/images/logo flavoral international.jpg" alt="">
+</div>
+<nav class="nav-bar">
+   <ul class="nav-bar-ul">      
+   <li> <a class="nav-bar-item" href="/">Home</a></li>
+    {{#if user}}
+   <li> <a class="nav-bar-item" href="/auth/logout">Logout</a></li>
+   <li> <a class="nav-bar-item" href="/profile/profile-home">Profile</a></li> 
+
+   
+    {{else}}
+   <li> <a class="nav-bar-item" href="/auth/signup">Sign Up</a></li>
+   <li> <a class="nav-bar-item" href="/auth/login">Log In</a></li>
+   <li> <a class="nav-bar-item" href="/auth/intranet">Intranet Flavoral</a></li>
+      {{/if}}
+      </ul>
+   </nav>
+
+   <body>
+
+      {{{body}}}
+
+      <script src="/js/script.js"></script>
+   </body>
+
+</html>

@@ -1,0 +1,75 @@
+<nav class="nav-bar">
+   <ul class="nav-bar-ul">   
+       <li> <a class="nav-bar-item" href="/profile/profile-home">Return to your profile</a></li>
+
+<section>
+   <form action="/profile/update-profile" method="POST">
+   <fieldset>
+      <legend>Update your account</legend>
+   <label> Company Name *
+      <input 
+      type="text" 
+      name="companyName"
+      value="{{companyName}}"
+      >
+   </label>
+
+   <label> Name *
+      <input 
+      type="text" 
+      name="userName"
+      value="{{userName}}"
+      >
+   </label>
+
+    <label> Location
+      <input 
+      type="text" 
+      name="location" 
+      placeholder="Your city"
+      value="{{location}}"
+      >
+   </label>
+
+    <label> Email *
+      <input 
+      type="text" 
+      name="email"
+      value="{{email}}"
+      >
+   </label>
+
+    <label> Phone Number *
+      <input 
+      type="tel"
+      name="phoneNumber"
+      value="{{phoneNumber}}"
+      >
+   </label>
+
+   <label> Your Job
+      <input 
+      type="text" 
+      name="jobTitle"
+      value="{{jobTitle}}"
+      >
+   </label>
+
+   <label> Your business activities
+      <input 
+      type="text" 
+      name="business"
+      value="{{business}}"
+      >
+   </label>
+   <br>
+   <button type="submit">Save</button>
+   <button type="reset">Cancel</button>
+
+   </fieldset>
+</form>
+
+{{#if updateProfileMsg}}
+  <p style="color:red">{{updateProfileMsg}}</p>
+{{/if}}
+</section>

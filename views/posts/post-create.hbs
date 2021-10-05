@@ -1,0 +1,30 @@
+<section>
+   <form action="/posts/create" method="POST">
+   <fieldset>
+      <legend>Ask your question</legend>
+   <label> Category *
+      </label>
+   <br> 
+     <select name="category" >
+      {{#each category}}
+      <option value= "{{this}}">{{this}}</option>
+      {{/each}}
+   </select>
+
+   <label> Your question * </label>
+      <textarea
+      name="postText"
+      value="{{postText}}"
+      >
+   </textarea>
+   <br>
+   <br>
+   <button type="submit">Send my question</button>
+   </fieldset>
+</form>
+
+{{#if errorMessage}}
+  <p style="color:red">{{errorMessage}}</p>
+{{/if}}
+</section>
+

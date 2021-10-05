@@ -1,0 +1,37 @@
+<section class="profile-pres">
+   <h1>Hello {{user.userName}} !</h1>
+   <nav class="nav-bar-profile">
+      <ul class="nav-bar-ul-profile">
+         <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
+         <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
+      </ul>
+   </nav>
+
+   <article class="container"> 
+      <h2>Got a question ?</h2>
+      <p class="text">We would love to help you</p>
+      <a href="/posts/create">Ask a question </a>
+   </article>
+
+   <table class="table-posts" cellpadding="5" cellspacing="10">
+      <h3>All your questions</h3>
+      <thead>
+      <tr>
+         <th>Date of the Post</th>
+         <th>Category of the Post</th>
+         <th>Your Question</th>
+         <th>Answered</th>
+      </tr>
+      </thead>
+      <tbody>
+         <tr>{{#each userPosts}}</tr>
+
+         <td>{{this.created}}</td>
+         <td>{{this.category}}</td>
+         <td>{{this.postText}}</td>
+         <td>{{this.isResolved}}</td>
+      {{/each}}
+      
+      </tbody>
+   </table>
+</section>
