@@ -7,12 +7,14 @@ const mongoose = require("mongoose");
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
 
-// Require the User model in order to interact with the database
+// Require the User and Post model in order to interact with the database
 const User = require("../models/User.model");
+const PostModel = require("../models/Post.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isAdmin = require("../middleware/isAdmin");
 
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("intranet/login");
@@ -41,7 +43,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   // Search the database for a user with the email submitted in the form
   User.findOne({ $and: [{ email: email }, { isAdmin: true }] })
     .then((foundAdmin) => {
-      console.log(foundAdmin);
       // If the email isn't found, send the message that user provided wrong credentials
       if (!foundAdmin) {
         return res
@@ -50,13 +51,13 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       // If user is found based on the email, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, foundUser.password).then((isSamePassword) => {
+      bcrypt.compare(password, foundAdmin.password).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
             .status(400)
             .render("intranet/login", { errorMessage: "Wrong credentials." });
         }
-        req.session.admin = foundUser;
+        req.session.user = foundAdmin;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/intranet/admin-dashboard");
       });
@@ -68,6 +69,12 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       next(err);
       // return res.status(500).render("login", { errorMessage: err.message });
     });
+});
+
+router.get("/admin-dashboard", isAdmin, (req, res) => {
+  PostModel.find().then((allPosts) => {
+    res.render("intranet/admin-dashboard", { userPosts: allPosts });
+  });
 });
 
 module.exports = router;

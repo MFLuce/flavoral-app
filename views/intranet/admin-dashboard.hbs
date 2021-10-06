@@ -1,0 +1,30 @@
+<section class="admin-dashboard">
+   <h1>Hello {{user.userName}} !</h1>
+   <nav class="nav-bar-profile">
+      <ul class="nav-bar-ul-profile">
+         <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
+      </ul>
+   </nav>
+
+   <table class="table-posts" cellpadding="5" cellspacing="10">
+      <h2>Customers Questions not assigned</h2>
+      <thead>
+      <tr>
+         <th>Date of the Post</th>
+         <th>Category of the Post</th>
+         <th>Your Question</th>
+         <th>Answered</th>
+      </tr>
+      </thead>
+      <tbody>
+         <tr>{{#each userPosts}}</tr>
+
+         <td>{{this.created}}</td>
+         <td>{{this.category}}</td>
+         <td>{{this.postText}}</td>
+         <td>{{this.isResolved}}</td>
+      {{/each}}
+      
+      </tbody>
+   </table>
+</section>

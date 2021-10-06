@@ -7,13 +7,13 @@ const mongoose = require("mongoose");
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
 
-// Require the User model in order to interact with the database
+// Require the User and Post model in order to interact with the database
 const User = require("../models/User.model");
+const PostModel = require("../models/Post.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
-const PostModel = require("../models/Post.model");
 
 //PROFILE ROUTES
 router.get("/profile-home", isLoggedIn, (req, res) => {
