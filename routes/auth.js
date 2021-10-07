@@ -156,6 +156,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   User.findOne({ email })
     .then((foundUser) => {
       // If the email isn't found, send the message that user provided wrong credentials
+      console.log(foundUser);
       if (!foundUser) {
         return res
           .status(400)
@@ -168,6 +169,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           return res
             .status(400)
             .render("auth/login", { errorMessage: "Wrong credentials." });
+        }
+        if (foundUser.isAdmin) {
+          req.session.user = foundUser;
+          return res.redirect("/intranet/admin-dashboard");
         }
         req.session.user = foundUser;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object

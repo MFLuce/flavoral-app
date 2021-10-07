@@ -11,12 +11,13 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const PostModel = require("../models/Post.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
+// Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isNotAdmin = require("../middleware/isNotAdmin");
 
 //PROFILE ROUTES
-router.get("/profile-home", isLoggedIn, (req, res) => {
+router.get("/profile-home", isLoggedIn, isNotAdmin, (req, res) => {
   PostModel.find({ postUserId: req.session.user._id }).then((userPosts) => {
     res.render("profile/profile-home", { userPosts });
   });

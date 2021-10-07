@@ -1,4 +1,7 @@
 <section class="profile-pres">
+   {{#if user}}
+
+      {{#if user.isAdmin}}
    <h1>Hello {{user.userName}} !</h1>
    <nav class="nav-bar-profile">
       <ul class="nav-bar-ul-profile">
@@ -6,7 +9,11 @@
          <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
       </ul>
    </nav>
-
+      {{else}}
+      <ul class="nav-bar-ul-profile">
+         <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
+         <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
+      </ul>
    <article class="container"> 
       <h2>Got a question ?</h2>
       <p class="text">We would love to help you</p>
@@ -34,4 +41,7 @@
       
       </tbody>
    </table>
+   {{/if}}
+   {{/if}}
 </section>
+

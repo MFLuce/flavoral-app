@@ -7,23 +7,35 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       {{!-- <title>{{title}}</title> --}}
       <title>Flavoral App</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
+
 <div>
 <img id="logo" src="/images/logo flavoral international.jpg" alt="">
 </div>
 <nav class="nav-bar">
    <ul class="nav-bar-ul">      
    <li> <a class="nav-bar-item" href="/">Home</a></li>
-    {{#if user}}
-   <li> <a class="nav-bar-item" href="/auth/logout">Logout</a></li>
-   <li> <a class="nav-bar-item" href="/profile/profile-home">Profile</a></li> 
 
-   
+    {{#if user}}
+
+      {{#if user.isAdmin}}
+
+      <li> <a class="nav-bar-item" href="/auth/logout">Logout</a></li>
+
+      {{else}}
+
+      <li> <a class="nav-bar-item" href="/auth/logout">Logout</a></li>
+      <li> <a class="nav-bar-item" href="/profile/profile-home">Profile</a></li> 
+
+      {{/if}}
+
+   {{!-- IF IT'S NOT A USER --}}
     {{else}}
    <li> <a class="nav-bar-item" href="/auth/signup">Sign Up</a></li>
    <li> <a class="nav-bar-item" href="/auth/login">Log In</a></li>
-   <li> <a class="nav-bar-intranet" href="/intranet/login">Intranet</a></li>
+   
       {{/if}}
       </ul>
    </nav>
@@ -33,6 +45,8 @@
       {{{body}}}
 
       <script src="/js/script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
    </body>
 
 </html>

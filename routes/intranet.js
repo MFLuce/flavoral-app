@@ -16,7 +16,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
 
-router.get("/login", isLoggedOut, (req, res) => {
+/* router.get("/login", isLoggedOut, (req, res) => {
   res.render("intranet/login");
 });
 
@@ -69,9 +69,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       next(err);
       // return res.status(500).render("login", { errorMessage: err.message });
     });
-});
+}); */
 
-router.get("/admin-dashboard", isAdmin, (req, res) => {
+router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
   PostModel.find().then((allPosts) => {
     res.render("intranet/admin-dashboard", { userPosts: allPosts });
   });

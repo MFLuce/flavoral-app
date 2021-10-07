@@ -1,18 +1,30 @@
 <nav class="nav-bar-profile">
    <ul class="nav-bar-ul-profile">      
    {{#if user}}
+
+      {{#if user.isAdmin}}
+
+   <h1>Hello 
+    {{user.userName}} !
+   </h1>
+   <p>You can assign the customers questions</p>
+   <a class="nav-bar-item" href="/intranet/admin-dashboard">Admin Dashboard</a></li>   
+
+      {{else}}
+
    <h1>Hello 
     {{user.userName}} !
    </h1>
    <h1>Welcome on our request tool!</h1>
 <p>You can contact us to send an order, 
     ask further information on our product or whatever matters to you</p>   
+      {{/if}}
 
    {{else}}
    <h1>Welcome on our request tool!</h1>
 <p>You can contact us to send an order, 
-    ask further information on our product or whatever matters to you</p>   
-
+    ask further information on our product or whatever matters to you</p>
+<h3>Sign in or log in to be in touch with us !</h3>
     {{/if}}
       </ul>
    </nav>
