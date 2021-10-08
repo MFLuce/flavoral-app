@@ -104,4 +104,22 @@ router.post("/update-password", isLoggedIn, (req, res) => {
   });
 });
 
+//DELETE ACCOUNT ROUTES
+router.get("/delete-account", isLoggedIn, async (req, res) => {
+  const userId = req.session.user._id;
+
+  await User.findByIdAndDelete(userId);
+  const arrOfPostsFromUser = await PostModel.find({ postUserId: userId });
+  const getPostIds = arrOfPostsFromUser.map((e) => e._id);
+  await PostModel.deleteMany({ _id: { $in: getPostIds } });
+
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("err: ", err);
+    }
+
+    res.redirect("/");
+  });
+});
+
 module.exports = router;

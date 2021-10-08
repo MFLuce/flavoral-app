@@ -17,6 +17,7 @@ const { postModelCategoryEnum } = require("../utils/consts");
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const PostMiddleware = require("../middleware/PostMiddleware");
 
 //CREATE POSTS ROUTES
 router.get("/create", isLoggedIn, (req, res) => {
@@ -35,6 +36,12 @@ router.post("/create", isLoggedIn, (req, res) => {
       res.redirect("/profile/profile-home");
     }
   );
+});
+
+// SINGLE POST ROUTES
+
+router.get("/:id", isLoggedIn, PostMiddleware, (req, res) => {
+  return res.render("posts/single-post", { post: req.post });
 });
 
 module.exports = router;

@@ -1,16 +1,19 @@
 <section class="admin-dashboard">
-   <h1>Hello {{user.userName}} !</h1>
+   <h1>Welcome {{user.userName}} !</h1>
    <nav class="nav-bar-profile">
       <ul class="nav-bar-ul-profile">
          <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
          <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
+         <li> <a class="nav-bar-item-profile" href="/profile/delete-account">Delete your account</a></li>
       </ul>
    </nav>
-
-   <table class="table-posts" cellpadding="5" cellspacing="10">
+<div class="table-responsive">
+   <table class="table table-striped" cellpadding="5" cellspacing="10">
       <h2>Customers Questions not assigned</h2>
       <thead>
       <tr>
+         <th>Company Name</th>
+         <th>Name</th>
          <th>Date of the Post</th>
          <th>Category of the Post</th>
          <th>Your Question</th>
@@ -20,6 +23,10 @@
       <tbody>
          <tr>{{#each userPosts}}</tr>
 
+         <td>
+            <a href="/posts/{{this._id}}">{{this.postUserId.companyName}}</a>
+            </td>
+         <td>{{this.postUserId.userName}}</td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
@@ -28,4 +35,5 @@
       
       </tbody>
    </table>
+   </div>
 </section>

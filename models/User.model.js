@@ -5,7 +5,6 @@ const userSchema = new Schema({
   companyName: {
     type: String,
     required: true,
-    // unique: true -> Ideally, should be unique, but its up to you
   },
   userName: {
     type: String,
@@ -37,6 +36,6 @@ const userSchema = new Schema({
   jobTitle: String,
 });
 
-const UserModel = model("UserColl", userSchema);
+const UserModel = model("User", userSchema);
 
 module.exports = UserModel;

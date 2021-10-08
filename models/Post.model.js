@@ -24,7 +24,7 @@ const postSchema = new Schema({
      */
   },
   created: {
-    type: [Date],
+    type: Date,
     default: Date(),
   },
   isResolved: {
@@ -33,6 +33,6 @@ const postSchema = new Schema({
   },
 });
 
-const PostModel = model("PostColl", postSchema);
+const PostModel = model("Post", postSchema);
 
 module.exports = PostModel;
