@@ -1,5 +1,37 @@
-<h1>{{post.category}}</h1>
-<h3>
-    {{post.postUserId.companyName}}
+<section>
+   <form action="/posts/single-post" method="POST">
+   <fieldset>
+       <legend>Details of the customer question</legend>
+       <label> Category</label>
+       <input type="text" name="category" value="{{post.category}}" readonly/>
+       <br>
+       
+       <label> Question</label>
+       <input type="text" name="category" value="{{post.postText}}" readonly />
+       <br>
 
-</h3>
+       <label> Company Name</label>
+       <input type="text" name="companyName" value="{{post.postUserId.companyName}}" readonly/>
+       <br>
+
+       <label> Name</label>
+       <input type="text" name="name" value="{{post.postUserId.userName}}" readonly/>
+       <br>
+
+       <label> Date</label>
+       <input type="text" name="created" value="{{post.created}}" readonly/>
+       <br>
+
+       <label> Answered</label>
+       <input type="text" name="answered" value="{{post.isResolved}}" readonly/>
+       <br>
+       <br>
+       
+       <button type="submit">Send my question</button>
+   </fieldset>
+</form>
+
+{{#if errorMessage}}
+  <p style="color:red">{{errorMessage}}</p>
+{{/if}}
+</section>

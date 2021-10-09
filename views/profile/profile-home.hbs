@@ -5,7 +5,7 @@
     {{user.userName}} !
    </h1>
    
-   <ul class="nav-bar-ul-profile">
+   <ul>
       <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
       <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
       <li> <a class="nav-bar-item-profile" href="/profile/delete-account">Delete your account</a></li>
@@ -16,12 +16,14 @@
       <a href="/posts/create">Ask a question </a>
    </article>
 
-   <table class="table-posts" cellpadding="5" cellspacing="10">
+<div class="table-responsive">
+   <table class="table table-striped">
       <h3>All your questions</h3>
       <thead>
       <tr>
-         <th>Date of the Post</th>
-         <th>Category of the Post</th>
+         <th>N°</th>
+         <th>Date of your Post</th>
+         <th>Category of your Post</th>
          <th>Your Question</th>
          <th>Answered</th>
       </tr>
@@ -29,6 +31,8 @@
       <tbody>
          <tr>{{#each userPosts}}</tr>
 
+         <td><ol><li></li></ol>
+         <button type="button" class="btn btn-primary btn-sm">Modify</button></td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
@@ -38,5 +42,6 @@
       </tbody>
    </table>
    {{/if}}
+   </div>
 </section>
 

@@ -17,11 +17,23 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
 
 router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
+  //1) Query the DB and get us all the users in
+  // which the property isCompany === true!
+
+  // 2) Send those usersnames to the HBS file
+
   Post.find()
     .populate([{ path: "postUserId" }])
     .then((allPosts) => {
-      console.log(allPosts);
-      res.render("intranet/admin-dashboard", { userPosts: allPosts });
+      // console.log(allPosts);
+
+      User.find({ isCompany: true }).then((companyUsers) => {
+        console.log(companyUsers);
+        res.render("intranet/admin-dashboard", {
+          userPosts: allPosts,
+          companyUsers,
+        });
+      });
     });
 });
 

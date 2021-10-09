@@ -27,6 +27,10 @@ const postSchema = new Schema({
     type: Date,
     default: Date(),
   },
+  assignedTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   isResolved: {
     type: Boolean,
     default: false,

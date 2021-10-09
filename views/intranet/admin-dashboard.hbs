@@ -8,25 +8,36 @@
       </ul>
    </nav>
 <div class="table-responsive">
-   <table class="table table-striped" cellpadding="5" cellspacing="10">
+   <table class="table table-striped">
       <h2>Customers Questions not assigned</h2>
       <thead>
       <tr>
-         <th>Company Name</th>
+         <th>Assign</th>
          <th>Name</th>
-         <th>Date of the Post</th>
-         <th>Category of the Post</th>
-         <th>Your Question</th>
+         <th>Company Name</th>
+         <th>Date</th>
+         <th>Category</th>
+         <th>Question</th>
          <th>Answered</th>
       </tr>
       </thead>
       <tbody>
          <tr>{{#each userPosts}}</tr>
 
+         <td><select name="assign" >
+            {{#each ../companyUsers}}
+            <option value="" selected disabled hidden>Choose here</option>
+            <option value= "{{this._id}}" default= "">{{this.userName}}</option>
+            {{/each}}
+         </select>
+         <div class="container">
+         <button type="button" class="btn btn-primary btn-sm">Assign</button>
+         </div>
+         </td>
          <td>
-            <a href="/posts/{{this._id}}">{{this.postUserId.companyName}}</a>
+            <a href="/posts/{{this._id}}">{{this.postUserId.userName}}</a>
             </td>
-         <td>{{this.postUserId.userName}}</td>
+         <td>{{this.postUserId.companyName}}</td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>

@@ -18,6 +18,10 @@ const { postModelCategoryEnum } = require("../utils/consts");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const PostMiddleware = require("../middleware/PostMiddleware");
+const isAdmin = require("../middleware/isAdmin");
+const isNotAdmin = require("../middleware/isNotAdmin");
+const compareIds = require("../utils/compareIds");
+const formatedDate = require("../utils/formatedDate");
 
 //CREATE POSTS ROUTES
 router.get("/create", isLoggedIn, (req, res) => {
@@ -44,4 +48,17 @@ router.get("/:id", isLoggedIn, PostMiddleware, (req, res) => {
   return res.render("posts/single-post", { post: req.post });
 });
 
+//EDIT SINGLE POST ROUTES
+router.get(
+  "/:id/editpost",
+  isLoggedIn,
+  isNotAdmin,
+  PostMiddleware,
+  (req, res) => {
+    if (!compareIds(req.session.user._id, req.post?.postUserId?._id)) {
+      return res.redirect(`/posts/${req.params.id}`);
+    }
+    res.render("posts/edit-single-post", { post: req.post });
+  }
+);
 module.exports = router;

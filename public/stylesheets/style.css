@@ -3,7 +3,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+/* a {
   color: #00b7ff;
 }
 
@@ -51,6 +51,7 @@ a {
   background-color: #555;
   color: white;
 }
+ */
 fieldset {
   margin: 2em 0;
   padding: 1em 2em;
@@ -76,7 +77,7 @@ label {
   display: block;
   margin-top: 1em;
 }
-.table-posts {
+/* .table-posts {
   margin: 0 10 40px auto;
   font-size: 1.5em;
 }
@@ -93,20 +94,7 @@ label {
   text-align: left;
 }
 
-/* table,
-th,
-td {
-  border: 1px solid;
-}
-table {
-  width: 100%;
-  max-width: 1200px;
-  height: 500px;
-  margin: 0 auto;
-  display: block;
-  overflow-x: auto;
-  border-spacing: 0;
-}
+
 
 th,
 td {

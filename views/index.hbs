@@ -1,14 +1,10 @@
-<nav class="nav-bar-profile">
-   <ul class="nav-bar-ul-profile">      
-   {{#if user}}
-
-      {{#if user.isAdmin}}
-
-   <h1>Hello 
+{{#if user}}
+{{#if user.isAdmin}}
+<h1>Hello 
     {{user.userName}} !
    </h1>
    <p>You can assign the customers questions</p>
-   <a class="nav-bar-item" href="/intranet/admin-dashboard">Admin Dashboard</a></li>   
+   <a href="/intranet/admin-dashboard">Admin Dashboard</a></li>   
 
       {{else}}
 
