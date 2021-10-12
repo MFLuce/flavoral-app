@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 const { postModelCategoryEnum } = require("../utils/consts");
 
-// TODO: Please make sure you edit the post model to whatever makes sense in this case
 const postSchema = new Schema({
   postUserId: {
     type: mongoose.Schema.Types.ObjectId,

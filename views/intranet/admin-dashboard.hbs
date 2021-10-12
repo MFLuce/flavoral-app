@@ -24,19 +24,18 @@
       <tbody>
          <tr>{{#each userPosts}}</tr>
 
-         <td><select name="assign" >
+         <td>
+            <form action="/intranet/{{this._id}}/assign" method="post">
+            <select name="assignedTo" >
             {{#each ../companyUsers}}
             <option value="" selected disabled hidden>Choose here</option>
             <option value= "{{this._id}}" default= "">{{this.userName}}</option>
             {{/each}}
          </select>
-         <div class="container">
-         <button type="button" class="btn btn-primary btn-sm">Assign</button>
-         </div>
-         </td>
-         <td>
-            <a href="/posts/{{this._id}}">{{this.postUserId.userName}}</a>
-            </td>
+               <button type="submit" class="btn btn-primary btn-sm">Assign</button>
+               <form action="/intranet/{{this._id}}/delete" method="post">
+               <button type="submit" class="btn btn-warning btn-sm">Delete</button>               </td>
+         <td>{{this.postUserId.userName}}</td>
          <td>{{this.postUserId.companyName}}</td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>

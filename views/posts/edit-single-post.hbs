@@ -1,23 +1,21 @@
 <section>
-  <form action="/posts/{{post._id}}/editpost" method="POST">
+  <form action="/posts/{{post._id}}/edit" method="POST">
     <fieldset>
-      <legend>Modify your Post</legend>
-      <label>
-        Category *
-      </label>
-      <br />
+      <legend>Your post</legend>
+      <label> Category</label>
       <select name="category" autofocus>
+        <option value="{{post.category}}">{{post.category}}</option>
         {{#each category}}
           <option value="{{this}}">{{this}}</option>
         {{/each}}
       </select>
+      <br />
 
-      <label> Your question * </label>
-      <textarea name="postText" value="{{postText}}">
-      </textarea>
+      <label> Question</label>
+      <input type="text" name="postText" value="{{post.postText}}" />
       <br />
-      <br />
-      <button type="submit">Send my question</button>
+
+      <button type="submit">Modify my post</button>
     </fieldset>
   </form>
 

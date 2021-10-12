@@ -42,23 +42,32 @@ router.post("/create", isLoggedIn, (req, res) => {
   );
 });
 
-// SINGLE POST ROUTES
+//EDIT SINGLE POST ROUTES
+router.get("/:id/edit", isLoggedIn, isNotAdmin, (req, res) => {
+  // I DON'T UNDERSTAND THE ????
+  // if (!compareIds(req.session.user._id, req.post?.postUserId?._id)) {
+  //   return res.redirect(`/profile/profile-home`);
+  // }
+  // console.log(post);
+  // res.render("posts/edit-single-post", { post: req.post });
 
-router.get("/:id", isLoggedIn, PostMiddleware, (req, res) => {
-  return res.render("posts/single-post", { post: req.post });
+  Post.findById(req.params.id).then((editedPost) => {
+    // First check if the user is the writer of the post:
+    if (!compareIds(req.session.user._id, editedPost.postUserId._id)) {
+      return res.redirect("/profile/profile-home");
+    }
+
+    const otherCategories = postModelCategoryEnum.filter(
+      (cat) => cat !== editedPost.category
+    );
+
+    res.render("posts/edit-single-post", {
+      post: editedPost,
+      category: otherCategories,
+    });
+  });
 });
 
-//EDIT SINGLE POST ROUTES
-router.get(
-  "/:id/editpost",
-  isLoggedIn,
-  isNotAdmin,
-  PostMiddleware,
-  (req, res) => {
-    if (!compareIds(req.session.user._id, req.post?.postUserId?._id)) {
-      return res.redirect(`/posts/${req.params.id}`);
-    }
-    res.render("posts/edit-single-post", { post: req.post });
-  }
-);
+// EDIT POST ROUTE BELOW
+
 module.exports = router;

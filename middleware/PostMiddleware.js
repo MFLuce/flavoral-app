@@ -1,9 +1,8 @@
 const Post = require("../models/Post.model");
 module.exports = (req, res, next) => {
   Post.findById(req.params.id)
-    .populate([{ path: "postUserId" }])
+    .populate([{ path: "postUserId" }, { path: "assignedTo" }])
     .then((singlePost) => {
-      console.log(singlePost);
       if (!singlePost) {
         return res.redirect("/");
       }

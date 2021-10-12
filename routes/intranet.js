@@ -15,6 +15,8 @@ const Post = require("../models/Post.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
+const PostMiddleware = require("../middleware/PostMiddleware");
+const formatedDate = require("../utils/formatedDate");
 
 router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
   //1) Query the DB and get us all the users in
@@ -22,19 +24,33 @@ router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
 
   // 2) Send those usersnames to the HBS file
 
-  Post.find()
+  Post.find({ assignedTo: null })
     .populate([{ path: "postUserId" }])
     .then((allPosts) => {
       // console.log(allPosts);
 
       User.find({ isCompany: true }).then((companyUsers) => {
-        console.log(companyUsers);
+        // console.log(companyUsers);
         res.render("intranet/admin-dashboard", {
           userPosts: allPosts,
           companyUsers,
         });
       });
     });
+});
+
+router.post("/:id/assign", isLoggedIn, isAdmin, PostMiddleware, (req, res) => {
+  const { assignedTo } = req.body;
+  console.log(`Here the req.body: `, req.body);
+  return Post.findByIdAndUpdate(
+    req.post._id,
+    { assignedTo },
+    { new: true }
+  ).then(() => {
+    console.log(`Here the req.post: `, req.post);
+    res.render("intranet/assign", { post: req.post });
+    console.log(req.post);
+  });
 });
 
 module.exports = router;

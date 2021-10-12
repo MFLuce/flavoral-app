@@ -32,7 +32,7 @@
          <tr>{{#each userPosts}}</tr>
 
          <td><ol><li></li></ol>
-         <button type="button" class="btn btn-primary btn-sm">Modify</button></td>
+         <a class="btn btn-primary btn-sm" href="/posts/{{this._id}}/edit">Modify</a></td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
