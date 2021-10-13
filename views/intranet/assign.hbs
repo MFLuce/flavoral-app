@@ -1,57 +1,89 @@
-<h1>The post was assigned</h1>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-11"></div>
+  </div>
 
-<section>
-  <form>
-    <fieldset>
-      <legend>Details of the customer question</legend>
-      <label> Category</label>
-      <input type="text" name="category" value="{{post.category}}" readonly />
-      <br />
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="navbar bg-light navbar-dark">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/intranet/admin-dashboard">Return to your
+              dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-      <label> Question</label>
-      <input type="text" name="category" value="{{post.postText}}" readonly />
-      <br />
+    <div class="col-sm-6">
+      <section>
+        <form action="/intranet/{{post._id}}assign/send">
+          <fieldset>
+            <legend class="h2">Details of the customer question</legend>
+            <label> Category</label>
+            <input
+              type="text"
+              name="category"
+              value="{{post.category}}"
+              readonly
+            />
+            <br />
 
-      <label> Company Name</label>
-      <input
-        type="text"
-        name="companyName"
-        value="{{post.postUserId.companyName}}"
-        readonly
-      />
-      <br />
+            <label> Question</label>
+            <textarea
+              rows="5"
+              cols="30"
+              name="postText"
+              readonly
+            >{{post.postText}}</textarea>
+            <br />
 
-      <label> Name</label>
-      <input
-        type="text"
-        name="name"
-        value="{{post.postUserId.userName}}"
-        readonly
-      />
-      <br />
+            <label> Company Name</label>
+            <input
+              type="text"
+              name="companyName"
+              value="{{post.postUserId.companyName}}"
+              readonly
+            />
+            <br />
 
-      <label> Date</label>
-      <input type="text" name="created" value="{{post.created}}" readonly />
-      <br />
+            <label> Name</label>
+            <input
+              type="text"
+              name="name"
+              value="{{post.postUserId.userName}}"
+              readonly
+            />
+            <br />
 
-      <label> Answered</label>
-      <input type="text" name="answered" value="{{post.isResolved}}" readonly />
-      <br />
-      <label> Assigned to</label>
-      <input
-        type="text"
-        name="assigned"
-        value="{{post.assignedTo.userName}}"
-        readonly
-      />
-      <br />
-      <br />
+            <label> Date</label>
+            <input
+              type="text"
+              name="created"
+              value="{{post.created}}"
+              readonly
+            />
+            <br />
+            <label> Assigned to</label>
+            <input
+              type="text"
+              name="assignedTo"
+              value="{{post.assignedTo.userName}}"
+              readonly
+            />
+            <br />
+            <br />
 
-      <button type="submit">Send to the Assigned Person</button>
-    </fieldset>
-  </form>
+            <button type="submit">Send to the Assigned Person</button>
+          </fieldset>
+        </form>
 
-  {{#if errorMessage}}
-    <p style="color:red">{{errorMessage}}</p>
-  {{/if}}
-</section>
+        {{#if errorMessage}}
+          <p style="color:red">{{errorMessage}}</p>
+        {{/if}}
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,30 +1,55 @@
-<section>
-   <form action="/posts/create" method="POST">
-   <fieldset>
-      <legend>Ask your question</legend>
-   <label> Category *
-      </label>
-   <br> 
-     <select name="category" autofocus>
-      {{#each category}}
-      <option value= "{{this}}">{{this}}</option>
-      {{/each}}
-   </select>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-11"></div>
+  </div>
 
-   <label> Your question * </label>
-      <textarea
-      name="postText"
-      value="{{postText}}"
-      >
-   </textarea>
-   <br>
-   <br>
-   <button type="submit">Send my question</button>
-   </fieldset>
-</form>
+  <div class="container-fluid mt-5">
 
-{{#if errorMessage}}
-  <p style="color:red">{{errorMessage}}</p>
-{{/if}}
-</section>
+    <div class="row">
 
+      <div class="col-sm-2">
+        <div class="navbar bg-light navbar-dark">
+          <ul class="nav flex-column">
+            {{#if user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/profile-home">Return to your
+                  profile</a>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <section>
+          <form action="/posts/create" method="POST">
+            <fieldset>
+              <legend class="h2">Post your question</legend>
+              <label>
+                Category *
+              </label>
+              <select name="category" autofocus>
+                {{#each category}}
+                  <option value="" selected disabled hidden>Choose here</option>
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+
+              <label> Your question * </label>
+              <textarea name="postText"></textarea>
+              <br />
+              <br />
+              <button type="submit">Send my question</button>
+            </fieldset>
+          </form>
+
+          {{#if errorMessage}}
+            <p style="color:red">{{errorMessage}}</p>
+          {{/if}}
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

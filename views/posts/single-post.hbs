@@ -1,37 +1,52 @@
 <section>
-   <form action="/posts/single-post" method="POST">
-   <fieldset>
-       <legend>Details of the customer question</legend>
-       <label> Category</label>
-       <input type="text" name="category" value="{{post.category}}" readonly/>
-       <br>
-       
-       <label> Question</label>
-       <input type="text" name="category" value="{{post.postText}}" readonly />
-       <br>
+  <form action="/posts/single-post" method="POST">
+    <fieldset>
+      <legend>Details of the customer question</legend>
+      <label> Category</label>
+      <input type="text" name="category" value="{{post.category}}" readonly />
+      <br />
 
-       <label> Company Name</label>
-       <input type="text" name="companyName" value="{{post.postUserId.companyName}}" readonly/>
-       <br>
+      <label> Question</label>
+      <textarea
+        name="postText"
+        rows="5"
+        cols="30"
+        readonly
+      >{{post.postText}}</textarea>
+      <br />
 
-       <label> Name</label>
-       <input type="text" name="name" value="{{post.postUserId.userName}}" readonly/>
-       <br>
+      <label> Company Name</label>
+      <input
+        type="text"
+        name="companyName"
+        value="{{post.postUserId.companyName}}"
+        readonly
+      />
+      <br />
 
-       <label> Date</label>
-       <input type="text" name="created" value="{{post.created}}" readonly/>
-       <br>
+      <label> Name</label>
+      <input
+        type="text"
+        name="name"
+        value="{{post.postUserId.userName}}"
+        readonly
+      />
+      <br />
 
-       <label> Answered</label>
-       <input type="text" name="answered" value="{{post.isResolved}}" readonly/>
-       <br>
-       <br>
-       
-       <button type="submit">Send my question</button>
-   </fieldset>
-</form>
+      <label> Date</label>
+      <input type="text" name="created" value="{{post.created}}" readonly />
+      <br />
 
-{{#if errorMessage}}
-  <p style="color:red">{{errorMessage}}</p>
-{{/if}}
+      <label> Answered</label>
+      <input type="text" name="answered" value="{{post.isResolved}}" readonly />
+      <br />
+      <br />
+
+      <button type="submit">Send my question</button>
+    </fieldset>
+  </form>
+
+  {{#if errorMessage}}
+    <p style="color:red">{{errorMessage}}</p>
+  {{/if}}
 </section>

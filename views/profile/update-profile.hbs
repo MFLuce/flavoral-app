@@ -1,17 +1,44 @@
-<nav class="nav-bar">
-   <ul class="nav-bar-ul">   
-       <li> <a class="nav-bar-item" href="/profile/profile-home">Return to your profile</a></li>
+<div class="container-fluid mt-5">
+   <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-11"></div>
+  </div>
+  
+  <div class="container-fluid mt-5">
 
-<section>
-   <form action="/profile/update-profile" method="POST">
-   <fieldset>
-      <legend>Update your account</legend>
+   <div class="row">
+
+    <div class="col-sm-2">
+       <div class="navbar bg-light navbar-dark">
+        <ul class="nav flex-column">
+           {{#if user}}
+          {{#if user.isAdmin}}
+          <li class="nav-item">
+            <a class="nav-link" href="/intranet/admin-dashboard">Return to your dashboard</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+            <a class="nav-link" href="/profile/profile-home">Return to your profile</a>
+            </li>
+            {{/if}}
+            {{/if}}
+        </ul>
+       </div>
+    </div>
+
+    <div class="col-sm-6">
+       <section>
+          <form action="/profile/update-profile" method="POST">
+          <fieldset>
+             <legend class="h2">Update your account</legend>
+             <br>
    <label> Company Name *
       <input 
       type="text" 
       name="companyName"
-      value="{{companyName}} autofocus"
-      >
+      value="{{companyName}}"
+      size="50" autofocus>
    </label>
 
    <label> Name *
@@ -65,7 +92,6 @@
    <br>
    <button type="submit">Save</button>
    <button type="reset">Cancel</button>
-
    </fieldset>
 </form>
 
@@ -73,3 +99,5 @@
   <p style="color:red">{{updateProfileMsg}}</p>
 {{/if}}
 </section>
+    </div>
+  </div>

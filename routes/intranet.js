@@ -27,10 +27,7 @@ router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
   Post.find({ assignedTo: null })
     .populate([{ path: "postUserId" }])
     .then((allPosts) => {
-      // console.log(allPosts);
-
       User.find({ isCompany: true }).then((companyUsers) => {
-        // console.log(companyUsers);
         res.render("intranet/admin-dashboard", {
           userPosts: allPosts,
           companyUsers,
@@ -41,16 +38,26 @@ router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
 
 router.post("/:id/assign", isLoggedIn, isAdmin, PostMiddleware, (req, res) => {
   const { assignedTo } = req.body;
-  console.log(`Here the req.body: `, req.body);
-  return Post.findByIdAndUpdate(
-    req.post._id,
-    { assignedTo },
-    { new: true }
-  ).then(() => {
-    console.log(`Here the req.post: `, req.post);
-    res.render("intranet/assign", { post: req.post });
-    console.log(req.post);
-  });
+
+  return Post.findByIdAndUpdate(req.post._id, { assignedTo }, { new: true })
+    .populate("postUserId assignedTo")
+    .then((updatedPost) => {
+      console.log(updatedPost);
+      res.render("intranet/assign", { post: updatedPost });
+    });
 });
+
+//SEND ASSIGNED POST TO THE COMPANY USER
+router.post(
+  "/:id/assign/send",
+  isLoggedIn,
+  isAdmin,
+  PostMiddleware,
+  (req, res) => {
+    const { category, postText, companyName, name, created, assignedTo } =
+      req.body;
+    console.log(req.body);
+  }
+);
 
 module.exports = router;

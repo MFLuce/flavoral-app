@@ -1,13 +1,29 @@
-<section class="admin-dashboard">
-   <h1>Welcome {{user.userName}} !</h1>
-   <nav class="nav-bar-profile">
-      <ul class="nav-bar-ul-profile">
-         <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
-         <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
-         <li> <a class="nav-bar-item-profile" href="/profile/delete-account">Delete your account</a></li>
+<div class="container-fluid mt-5">
+   <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-11"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+       <div class="navbar bg-light navbar-dark">
+        <ul class="nav flex-column">
+         <li class="nav-item">
+            <a class="nav-link" href="/profile/update-profile">Update your profile</a>
+            </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/profile/update-password">Modify your password</a>
+            </li>   
+         <li>
+            <a class="nav-link" href="/profile/delete-account">Delete your account</a>
+            </li>
       </ul>
-   </nav>
-<div class="table-responsive">
+       </div>
+      </div>
+
+    <div class="col-sm-10">    
+    <div class="table-responsive">
    <table class="table table-striped">
       <h2>Customers Questions not assigned</h2>
       <thead>
@@ -18,7 +34,6 @@
          <th>Date</th>
          <th>Category</th>
          <th>Question</th>
-         <th>Answered</th>
       </tr>
       </thead>
       <tbody>
@@ -31,19 +46,25 @@
             <option value="" selected disabled hidden>Choose here</option>
             <option value= "{{this._id}}" default= "">{{this.userName}}</option>
             {{/each}}
+ 
          </select>
+         <div class="btn-group-p-5">
                <button type="submit" class="btn btn-primary btn-sm">Assign</button>
                <form action="/intranet/{{this._id}}/delete" method="post">
-               <button type="submit" class="btn btn-warning btn-sm">Delete</button>               </td>
+               <button type="submit" class="btn btn-warning btn-sm">Delete</button>
+               </div>               
+               </td>
          <td>{{this.postUserId.userName}}</td>
          <td>{{this.postUserId.companyName}}</td>
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
-         <td>{{this.isResolved}}</td>
       {{/each}}
       
       </tbody>
    </table>
    </div>
+   </div>
 </section>
+</div>
+</div>

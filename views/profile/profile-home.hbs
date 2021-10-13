@@ -1,31 +1,48 @@
-<section class="profile-pres">
-   {{#if user}}
+<div class="container-fluid mt-5">
+   <div class="row">
+     <div class="col-sm-2">
+        <div class="navbar bg-light navbar-dark">
+           <ul class="nav flex-column">
+              <li class="nav-item">
+                 <a class="nav-link" href="/profile/update-profile">Update your profile</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/profile/update-password">Modify your password</a>
+               </li>   
+               <li>
+                  <a class="nav-link" href="/profile/delete-account">Delete your account</a>
+               </li>
+            </ul>
+         </div>
+         <br>
+         <br>
+         <div>
+            <article class="text-center"> 
+         <h2 class="h2">Got a question ?</h2>
+         <p class="font-weight-bold">We would love to help you</p>
+         </article>
+         <ul class="nav flex-column">
+         <li class="nav-item">
+         <a class="nav-link text-center" href="/posts/create">Post a question</a>
+         </li>
+         </ul>
+         </div>
+      </div>
 
-    <h1>Welcome
-    {{user.userName}} !
-   </h1>
+   <div class="col-sm-10">    
+      <section class="profile-pres">
+          {{#if user}}
+          <h1>Welcome {{user.userName}} !</h1>
    
-   <ul>
-      <li> <a class="nav-bar-item-profile" href="/profile/update-profile">Update your profile</a></li>
-      <li> <a class="nav-bar-item-profile" href="/profile/update-password">Modify your password</a></li>
-      <li> <a class="nav-bar-item-profile" href="/profile/delete-account">Delete your account</a></li>
-      </ul>
-   <article class="container"> 
-      <h2>Got a question ?</h2>
-      <p class="text">We would love to help you</p>
-      <a href="/posts/create">Ask a question </a>
-   </article>
-
-<div class="table-responsive">
-   <table class="table table-striped">
-      <h3>All your questions</h3>
+      <div class="table-responsive">
+      <table class="table table-striped">
+      <legend class="h2">All your questions</legend>
       <thead>
       <tr>
          <th>N°</th>
          <th>Date of your Post</th>
          <th>Category of your Post</th>
          <th>Your Question</th>
-         <th>Answered</th>
       </tr>
       </thead>
       <tbody>
@@ -36,7 +53,6 @@
          <td>{{this.created}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
-         <td>{{this.isResolved}}</td>
       {{/each}}
       
       </tbody>
@@ -44,4 +60,8 @@
    {{/if}}
    </div>
 </section>
+    </div>
+  </div>
+  </div>
+</div>
 

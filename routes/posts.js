@@ -25,25 +25,21 @@ const formatedDate = require("../utils/formatedDate");
 
 //CREATE POSTS ROUTES
 router.get("/create", isLoggedIn, (req, res) => {
-  // console.log(postModelCategoryEnum[0]);
-
   res.render("posts/post-create", { category: postModelCategoryEnum });
 });
 
 router.post("/create", isLoggedIn, (req, res) => {
   const { category, postText } = req.body;
-  console.log(req.body);
 
   Post.create({ category, postText, postUserId: req.session.user._id }).then(
-    (createdPost) => {
-      console.log(createdPost);
+    () => {
       res.redirect("/profile/profile-home");
     }
   );
 });
 
-//EDIT SINGLE POST ROUTES
-router.get("/:id/edit", isLoggedIn, isNotAdmin, (req, res) => {
+//EDIT POST ROUTES
+router.get("/:id/edit", isLoggedIn, isNotAdmin, PostMiddleware, (req, res) => {
   // I DON'T UNDERSTAND THE ????
   // if (!compareIds(req.session.user._id, req.post?.postUserId?._id)) {
   //   return res.redirect(`/profile/profile-home`);
@@ -51,23 +47,33 @@ router.get("/:id/edit", isLoggedIn, isNotAdmin, (req, res) => {
   // console.log(post);
   // res.render("posts/edit-single-post", { post: req.post });
 
-  Post.findById(req.params.id).then((editedPost) => {
-    // First check if the user is the writer of the post:
-    if (!compareIds(req.session.user._id, editedPost.postUserId._id)) {
-      return res.redirect("/profile/profile-home");
-    }
+  // First check if the user is the writer of the post:
+  if (!compareIds(req.session.user._id, req.post.postUserId._id)) {
+    return res.redirect("/profile/profile-home");
+  }
 
-    const otherCategories = postModelCategoryEnum.filter(
-      (cat) => cat !== editedPost.category
-    );
+  const otherCategories = postModelCategoryEnum.filter(
+    (cat) => cat !== req.post.category
+  );
 
-    res.render("posts/edit-single-post", {
-      post: editedPost,
-      category: otherCategories,
-    });
+  res.render("posts/edit-single-post", {
+    post: req.post,
+    category: otherCategories,
   });
 });
 
-// EDIT POST ROUTE BELOW
+router.post("/:id/edit", isLoggedIn, isNotAdmin, PostMiddleware, (req, res) => {
+  const { category, postText } = req.body;
+
+  if (!compareIds(req.session.user._id, req.post.postUserId._id)) {
+    return res.redirect("/profile/profile-home");
+  }
+
+  return Post.findByIdAndUpdate(req.post._id, { category, postText }).then(
+    () => {
+      res.redirect("/profile/profile-home");
+    }
+  );
+});
 
 module.exports = router;

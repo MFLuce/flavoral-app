@@ -15,6 +15,7 @@ const PostModel = require("../models/Post.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isNotAdmin = require("../middleware/isNotAdmin");
+const formatedDate = require("../utils/formatedDate");
 
 //PROFILE ROUTES
 router.get("/profile-home", isLoggedIn, isNotAdmin, (req, res) => {

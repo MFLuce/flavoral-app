@@ -1,25 +1,59 @@
-<section>
-  <form action="/posts/{{post._id}}/edit" method="POST">
-    <fieldset>
-      <legend>Your post</legend>
-      <label> Category</label>
-      <select name="category" autofocus>
-        <option value="{{post.category}}">{{post.category}}</option>
-        {{#each category}}
-          <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-      <br />
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-11"></div>
+  </div>
 
-      <label> Question</label>
-      <input type="text" name="postText" value="{{post.postText}}" />
-      <br />
+  <div class="container-fluid mt-5">
 
-      <button type="submit">Modify my post</button>
-    </fieldset>
-  </form>
+    <div class="row">
 
-  {{#if errorMessage}}
-    <p style="color:red">{{errorMessage}}</p>
-  {{/if}}
-</section>
+      <div class="col-sm-2">
+        <div class="navbar bg-light navbar-dark">
+          <ul class="nav flex-column">
+            {{#if user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/profile-home">Return to your
+                  profile</a>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <section>
+          <form action="/posts/{{post._id}}/edit" method="POST">
+            <fieldset>
+              <legend class="h2">Edit Your post</legend>
+              <label> Category*</label>
+              <select name="category" autofocus>
+                <option value="{{post.category}}">{{post.category}}</option>
+                {{#each category}}
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+              <br />
+
+              <label> Question</label>
+              <textarea
+                name="postText"
+                rows="5"
+                cols="30"
+              >{{post.postText}}</textarea>
+              <br />
+              <br />
+
+              <button type="submit">Modify my post</button>
+            </fieldset>
+          </form>
+
+          {{#if errorMessage}}
+            <p style="color:red">{{errorMessage}}</p>
+          {{/if}}
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
