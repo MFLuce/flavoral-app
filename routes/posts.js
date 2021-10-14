@@ -51,6 +51,7 @@ router.get("/:id/edit", isLoggedIn, isNotAdmin, PostMiddleware, (req, res) => {
   if (!compareIds(req.session.user._id, req.post.postUserId._id)) {
     return res.redirect("/profile/profile-home");
   }
+  const formatDate = formatedDate(req.post.created);
 
   const otherCategories = postModelCategoryEnum.filter(
     (cat) => cat !== req.post.category
@@ -59,6 +60,7 @@ router.get("/:id/edit", isLoggedIn, isNotAdmin, PostMiddleware, (req, res) => {
   res.render("posts/edit-single-post", {
     post: req.post,
     category: otherCategories,
+    created: formatDate,
   });
 });
 

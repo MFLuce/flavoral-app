@@ -8,7 +8,5 @@ function formattedDate(d = new Date()) {
 
   return `${day}/${month}/${year}`;
 }
-const d = new Date("2021-10-13T12:46:17.000Z");
-console.log(formattedDate(d));
 
 module.exports = formattedDate;

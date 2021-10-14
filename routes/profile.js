@@ -20,7 +20,14 @@ const formatedDate = require("../utils/formatedDate");
 //PROFILE ROUTES
 router.get("/profile-home", isLoggedIn, isNotAdmin, (req, res) => {
   PostModel.find({ postUserId: req.session.user._id }).then((userPosts) => {
-    res.render("profile/profile-home", { userPosts });
+    const postDate = userPosts.map((thePost) => {
+      const formatdate = formatedDate(thePost.created);
+      console.log(thePost);
+      console.log(formatdate);
+      return { ...thePost.toJSON(), formatdate };
+    });
+    console.log(postDate);
+    res.render("profile/profile-home", { posts: postDate });
   });
 });
 

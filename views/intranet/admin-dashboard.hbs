@@ -28,6 +28,7 @@
       <h2>Customers Questions not assigned</h2>
       <thead>
       <tr>
+         <th>N°</th>
          <th>Assign</th>
          <th>Name</th>
          <th>Company Name</th>
@@ -46,17 +47,19 @@
             <option value="" selected disabled hidden>Choose here</option>
             <option value= "{{this._id}}" default= "">{{this.userName}}</option>
             {{/each}}
- 
-         </select>
-         <div class="btn-group-p-5">
+          </select>
+         </td>
+
+         <td>
+         {{!-- <div class="btn-group-p-5"> --}}
                <button type="submit" class="btn btn-primary btn-sm">Assign</button>
                <form action="/intranet/{{this._id}}/delete" method="post">
-               <button type="submit" class="btn btn-warning btn-sm">Delete</button>
-               </div>               
+               {{!-- <button type="submit" class="btn btn-warning btn-sm">Delete</button> --}}
+               {{!-- </div>                --}}
                </td>
          <td>{{this.postUserId.userName}}</td>
          <td>{{this.postUserId.companyName}}</td>
-         <td>{{this.created}}</td>
+         <td>{{formatdate}}</td>
          <td>{{this.category}}</td>
          <td>{{this.postText}}</td>
       {{/each}}

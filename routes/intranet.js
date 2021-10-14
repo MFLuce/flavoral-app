@@ -28,8 +28,14 @@ router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
     .populate([{ path: "postUserId" }])
     .then((allPosts) => {
       User.find({ isCompany: true }).then((companyUsers) => {
+        const postDate = allPosts.map((thePost) => {
+          const formatdate = formatedDate(thePost.created);
+          console.log(thePost);
+          console.log(formatdate);
+          return { ...thePost.toJSON(), formatdate };
+        });
         res.render("intranet/admin-dashboard", {
-          userPosts: allPosts,
+          userPosts: postDate,
           companyUsers,
         });
       });
