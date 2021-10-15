@@ -34,8 +34,6 @@ router.get("/admin-dashboard", isLoggedIn, isAdmin, (req, res) => {
       User.find({ isCompany: true }).then((companyUsers) => {
         const postDate = allPosts.map((thePost) => {
           const formatdate = formatedDate(thePost.created);
-          console.log(thePost);
-          console.log(formatdate);
           return { ...thePost.toJSON(), formatdate };
         });
         res.render("intranet/admin-dashboard", {
@@ -53,7 +51,6 @@ router.post("/:id/assign", isLoggedIn, isAdmin, PostMiddleware, (req, res) => {
   return Post.findByIdAndUpdate(req.post._id, { assignedTo }, { new: true })
     .populate("postUserId assignedTo")
     .then((assignedPost) => {
-      // console.log(assignedPost);
       const formatDate = formatedDate(req.post.created);
       res.render("intranet/assign", {
         post: assignedPost,
@@ -66,8 +63,6 @@ router.post("/:id/assign", isLoggedIn, isAdmin, PostMiddleware, (req, res) => {
 router.post("/:id/assign/send", isAdmin, PostMiddleware, (req, res) => {
   const { category, postText, companyName, name, created, assignedTo } =
     req.body;
-  // console.log(req.body);
-  console.log(req.post);
 
   // User.findById(req.post.assignedTo._id).then((assignedUser) => {
   //   //Check if the assignedTo is a company person

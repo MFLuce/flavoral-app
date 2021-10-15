@@ -44,7 +44,6 @@ router.get("/:id/edit", isLoggedIn, isNotAdmin, PostMiddleware, (req, res) => {
   // if (!compareIds(req.session.user._id, req.post?.postUserId?._id)) {
   //   return res.redirect(`/profile/profile-home`);
   // }
-  // console.log(post);
   // res.render("posts/edit-single-post", { post: req.post });
 
   // First check if the user is the writer of the post:
