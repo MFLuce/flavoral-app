@@ -240,13 +240,16 @@ router.post("/:id/assign/send", isAdmin, PostMiddleware, (req, res) => {
   </html>
   `;
 
-  transport.sendMail({
-    from: '"Fred Foo 👻" <sendersaddress@here.com>', // sender address
-    to: "receiversaddress@here.com", // list of receivers
-    subject: "WE ARE ALIVE! 🔥", // Subject line
-    text: "Hello world?", // plain text body
-    html: message, // html body
-  });
+  transport
+    .sendMail({
+      from: '"Fred Foo 👻" <sendersaddress@here.com>', // sender address
+      to: "receiversaddress@here.com", // list of receivers
+      subject: "WE ARE ALIVE! 🔥", // Subject line
+      text: "Hello world?", // plain text body
+      html: message, // html body
+    })
+    .then((ok) => console.log("ok", ok))
+    .catch((err) => console.log("error: ", err.message));
 
   // });
   res.redirect("/intranet/admin-dashboard");
