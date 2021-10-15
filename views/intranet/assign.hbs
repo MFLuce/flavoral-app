@@ -19,10 +19,10 @@
 
     <div class="col-sm-6">
       <section>
-        <form action="/intranet/{{post._id}}/assign/send">
+        <form action="/intranet/{{post._id}}/assign/send" method="post">
           <fieldset>
             <legend class="h2">Details of the customer question</legend>
-            <label> Category</label>
+            <label>Category</label>
             <input
               type="text"
               name="category"
@@ -31,7 +31,7 @@
             />
             <br />
 
-            <label> Question</label>
+            <label>Question</label>
             <textarea
               rows="5"
               cols="30"
@@ -40,7 +40,7 @@
             >{{post.postText}}</textarea>
             <br />
 
-            <label> Company Name</label>
+            <label>Company Name</label>
             <input
               type="text"
               name="companyName"
@@ -49,7 +49,7 @@
             />
             <br />
 
-            <label> Name</label>
+            <label>Name</label>
             <input
               type="text"
               name="name"
@@ -58,15 +58,56 @@
             />
             <br />
 
-            <label> Date</label>
+            <label>Email</label>
             <input
               type="text"
-              name="created"
-              value="{{post.created}}"
+              name="email"
+              value={{post.postUserId.email}}
               readonly
             />
             <br />
-            <label> Assigned to</label>
+
+            <label>Phone Number</label>
+            <input
+              type="number"
+              name="phoneNumber"
+              value="{{post.postUserId.phoneNumber}}"
+              readonly
+            />
+            <br />
+
+            <label>Location</label>
+            <input
+              type="text"
+              name="location"
+              value="{{post.postUserId.location}}"
+              readonly
+            />
+            <br />
+
+            <label>Business</label>
+            <input
+              type="text"
+              name="business"
+              value="{{post.postUserId.business}}"
+              readonly
+            />
+            <br />
+
+            <label>Job Title</label>
+            <input
+              type="text"
+              name="jobTitle"
+              value="{{post.postUserId.jobTitle}}"
+              readonly
+            />
+            <br />
+
+            <label>Date</label>
+            <input type="text" name="created" value="{{created}}" readonly />
+            <br />
+
+            <label>Assigned to</label>
             <input
               type="text"
               name="assignedTo"

@@ -27,9 +27,7 @@
           <form action="/posts/create" method="POST">
             <fieldset>
               <legend class="h2">Post your question</legend>
-              <label>
-                Category *
-              </label>
+              <label>Category *</label>
               <select name="category" autofocus>
                 {{#each category}}
                   <option value="" selected disabled hidden>Choose here</option>
@@ -37,7 +35,7 @@
                 {{/each}}
               </select>
 
-              <label> Your question * </label>
+              <label>Your question * </label>
               <textarea name="postText"></textarea>
               <br />
               <br />

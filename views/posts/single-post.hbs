@@ -2,11 +2,11 @@
   <form action="/posts/single-post" method="POST">
     <fieldset>
       <legend>Details of the customer question</legend>
-      <label> Category</label>
+      <label>Category</label>
       <input type="text" name="category" value="{{post.category}}" readonly />
       <br />
 
-      <label> Question</label>
+      <label>Question</label>
       <textarea
         name="postText"
         rows="5"
@@ -15,7 +15,7 @@
       >{{post.postText}}</textarea>
       <br />
 
-      <label> Company Name</label>
+      <label>Company Name</label>
       <input
         type="text"
         name="companyName"
@@ -24,7 +24,7 @@
       />
       <br />
 
-      <label> Name</label>
+      <label>Name</label>
       <input
         type="text"
         name="name"
@@ -33,11 +33,11 @@
       />
       <br />
 
-      <label> Date</label>
+      <label>Date</label>
       <input type="text" name="created" value="{{post.created}}" readonly />
       <br />
 
-      <label> Answered</label>
+      <label>Answered</label>
       <input type="text" name="answered" value="{{post.isResolved}}" readonly />
       <br />
       <br />

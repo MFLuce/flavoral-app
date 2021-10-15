@@ -27,7 +27,7 @@
           <form action="/posts/{{post._id}}/edit" method="POST">
             <fieldset>
               <legend class="h2">Edit Your post</legend>
-              <label> Category*</label>
+              <label>Category *</label>
               <select name="category" autofocus>
                 <option value="{{post.category}}">{{post.category}}</option>
                 {{#each category}}
@@ -36,16 +36,12 @@
               </select>
               <br />
 
-              <label> Question</label>
+              <label>Question *</label>
               <textarea
                 name="postText"
                 rows="5"
                 cols="30"
               >{{post.postText}}</textarea>
-              <br />
-
-              <label> Date</label>
-              <input type="text" name="created" value="{{created}}" />
               <br />
               <br />
 

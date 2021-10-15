@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      p {
+        margin: 2rem auto 0;
+        text-align: center;
+        max-width: 40ch;
+      }
+
+      h1,
+      footer {
+        text-align: center;
+      }
+
+      footer {
+        margin-top: 2rem;
+        background: #000;
+        color: white;
+        padding: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>AMINE YOU HAVE A NEW ASSIGNED POST !</h1>
+
+    <form>
+        <fieldset>
+            <legend class="h2">Details of the Post</legend>
+            <label>Category</label>
+            <input
+              type="text"
+              name="category"
+              value= ${req.post.category}
+              readonly
+            />
+            <br/>
+
+            <label>Question</label>
+            <textarea
+              rows="5"
+              cols="30"
+              name="postText"
+              readonly
+            >${req.post.postText}</textarea>
+            <br/>
+
+            <label>Company Name</label>
+            <input
+              type="text"
+              name="companyName"
+              value=${req.post.postUserId.companyName}
+              readonly
+            />
+            <br/>
+
+            <label>Name</label>
+            <input
+              type="text"
+              name="name"
+              value=${req.post.postUserId.userName}
+              readonly
+            />
+            <br/>
+
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              value=${req.post.postUserId.email}
+              readonly
+            />
+            <br/>
+
+            <label>Phone Number</label>
+            <input
+              type="number"
+              name="phoneNumber"
+              value=${req.post.postUserId.phoneNumber}
+              readonly
+            />
+            <br/>
+
+            <label>Location</label>
+            <input
+              type="text"
+              name="location"
+              value=${req.post.postUserId.location}
+              readonly
+            />
+            <br/>
+
+            <label>Business</label>
+            <input
+              type="text"
+              name="business"
+              value=${req.post.postUserId.business}
+              readonly
+            />
+            <br/>
+
+            <label>Job Title</label>
+            <input
+              type="text"
+              name="jobTitle"
+              value=${req.post.postUserId.jobTitle}
+              readonly
+            />
+            <br/>
+
+            <label>Date</label>
+            <input 
+            type="text" 
+            name="created" 
+            value=${formatDate} 
+            readonly
+            />
+            <br/>
+
+            <label>Assigned to</label>
+            <input
+              type="text"
+              name="assignedTo"
+              value=${req.post.assignedTo.userName}
+              readonly
+            />
+            <br/>
+            <br/>
+    </form>
+    
+    <footer>Nodemailer | 2021</footer>
+  </body>
+</html>
