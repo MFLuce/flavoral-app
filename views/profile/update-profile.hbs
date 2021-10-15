@@ -29,34 +29,36 @@
 
     <div class="col-sm-6">
        <section>
-          <form action="/profile/update-profile" method="POST">
+          <form class="form-inline" action="/profile/update-profile" method="POST">
           <fieldset>
              <legend class="h2">Update your profile</legend>
              <br>
-   <label> Company Name *
-      <input 
-      type="text" 
-      name="companyName"
-      value="{{companyName}}"
-      size="50" autofocus>
-   </label>
+             
+             <label> Company Name *
+                <input 
+                type="text" 
+                name="companyName"
+                value="{{companyName}}"
+                size="50" autofocus
+                />
+                </label>
 
-   <label> Name *
-      <input 
-      type="text" 
-      name="userName"
-      value="{{userName}}"
-      >
-   </label>
-
-    <label> Location
-      <input 
-      type="text" 
-      name="location" 
-      placeholder="Your city"
-      value="{{location}}"
-      >
-   </label>
+             <label> Name *
+                <input 
+                type="text" 
+                name="userName"
+                value="{{userName}}"
+                />
+                </label>
+                
+                <label> Location
+                   <input 
+                   type="text" 
+                   name="location" 
+                   placeholder="Your city"
+                   value="{{location}}"
+                   />
+                   </label>
 
     <label> Email *
       <input 
